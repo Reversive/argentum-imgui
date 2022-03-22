@@ -74,11 +74,17 @@
     <LinkIncremental>true</LinkIncremental>
     <OutDir>$(SolutionDir)build\debug\</OutDir>
     <TargetName>$(ProjectName)-x86</TargetName>
+    <IncludePath>$(DXSDK_DIR)\Include;$(DXSDK_DIR)\Lib;$(IncludePath);$(DXSDK_DIR)\Lib</IncludePath>
+    <LibraryPath>$(DXSDK_DIR)\Lib\x86;$(LibraryPath)</LibraryPath>
+    <IntDir>intermediate\debug\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(SolutionDir)build\release\</OutDir>
     <TargetName>$(ProjectName)-x86</TargetName>
+    <IncludePath>$(DXSDK_DIR)\Include;$(VC_IncludePath);$(WindowsSDK_IncludePath);;$(DXSDK_DIR)\Lib</IncludePath>
+    <LibraryPath>$(DXSDK_DIR)\Lib\x86;$(LibraryPath)</LibraryPath>
+    <IntDir>intermediate\release\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
