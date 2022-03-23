@@ -10,6 +10,8 @@
 This is an integration of [Dear ImGui](https://github.com/ocornut/imgui) (a bloat-free graphical user interface library for C++) into Argentum Online. For this, it's necessary to hook DirectX EndScene/BeginScene/Present in order to hijack the d3d device, serve it to ImGui and gain access to an extensive graphical interface.
 ## What is the usage?
 When you inject a dll to a process, the interaction with I/O is either very poor (e.g spawning a console) or very complex (e.g having to make a GUI on C# and connect it with the dll via pipes). What this enables you is to have an extensive graphical interface to make complex components for the user to interact directly from your dll.
+## Is this only for Argentum Online?
+No. This can be extended to any DX8 game, the only thing you need to find by yourself is the method to feed ImGui the currently pressed keys (in this example, [this is the way](https://github.com/Reversive/argentum-imgui/blob/dc98afcd8be645fee2cf5cde23059172b775d03a/argentum-imgui/argentum/hooks/impl/hooks.cpp#L4)). Generally it can be done with a WndProc hook but it varies from game to game (e.g some may use DirectInput to which you will need to hook into the created devices to see which keys are being processed in-game).
 ## Requirements
 - [DirectX Software Development Kit](https://www.microsoft.com/en-us/download/details.aspx?id=6812)
 - [dxwrapper](https://github.com/elishacloud/dxwrapper) to wrap dx8 calls into dx9 (put the d3d8.dll, dxwrapper.dll and dxwrapper.ini in the game executable directory and enable d3d8to9 setting on dxwrapper.ini)
