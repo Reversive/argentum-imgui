@@ -6,16 +6,21 @@ int __stdcall DllMain(_In_ HINSTANCE instance, _In_ DWORD reason, _In_ LPVOID re
 
 	DisableThreadLibraryCalls(instance);
 	std::jthread{ []() {
-		argentum::g_ctx->run();}
+		argentum::g_ctx->run(); }
 	}.detach();
 	return 1;
 }
 
 #ifdef _DEBUG
-#define THROW( exception ) OutputDebugString(exception);
+#define THROW( exception ) throw std::runtime_error{ exception };
 #else
 #define THROW( exception ) return
 #endif
+
+#define HOOK( target, hook, original ) \
+    if ( MH_CreateHook( reinterpret_cast<LPVOID>(target), \
+        reinterpret_cast< LPVOID >( &hook ), reinterpret_cast< LPVOID* >( &original ) ) != MH_OK ) \
+        THROW( "can't hook " #hook "." ) \
 
 #define HOOK_VFUNC( vft, index, hook, original ) \
     if ( MH_CreateHook(  reinterpret_cast<LPVOID>(vft[index]), \
@@ -41,6 +46,9 @@ namespace argentum {
 
 	void c_ctx::init_hooks() const {
 		HOOK_VFUNC(g_engine->get_vft(), PRESENT_INDEX, hooks::dx9_present, hooks::o_dx9_present);
+		HOOK_VFUNC(g_engine->get_vft(), RESET_INDEX, hooks::dx9_reset, hooks::o_dx9_reset);
+		// todo: pattern scan this function
+		HOOK(0x597510, hooks::key_up, hooks::o_key_up);
 	}
 
 	void c_ctx::init_imgui() const {

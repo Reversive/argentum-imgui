@@ -12,6 +12,7 @@
 #define WIN32_LEAN_AND_MEAN
 #define D3D9_VMT_SIZE 119
 #define PRESENT_INDEX 17u
+#define RESET_INDEX 16u
 #include <windows.h>
 #endif
 
