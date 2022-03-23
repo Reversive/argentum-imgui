@@ -47,8 +47,8 @@ namespace argentum {
 	void c_ctx::init_hooks() const {
 		HOOK_VFUNC(g_engine->get_vft(), PRESENT_INDEX, hooks::dx9_present, hooks::o_dx9_present);
 		HOOK_VFUNC(g_engine->get_vft(), RESET_INDEX, hooks::dx9_reset, hooks::o_dx9_reset);
-		//todo: pattern scan this function
-		HOOK(0x597510, hooks::key_up, hooks::o_key_up);
+		uint32_t scan_result = find_pattern("\x8D\x45\xA0\x50\x8B\x4D\x88\x8B\x11\x8B\x45\x88\x50\xFF\x92\x00\x00\x00\x00\xDB\xE2\x89\x45\x84\x83\x7D\x84\x00", "xxxxxxxxxxxxxxx????xxxxxxxxx");
+		HOOK(scan_result - 0x8F, hooks::key_up, hooks::o_key_up);
 	}
 
 }

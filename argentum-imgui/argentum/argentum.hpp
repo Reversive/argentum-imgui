@@ -18,7 +18,9 @@
 
 #include <memory>
 #include <thread>
+#include <Psapi.h>
 #include "ctx/ctx.hpp"
 #include "hooks/hooks.hpp"
 #include "engine/engine.hpp"
 #include "menu/menu.hpp"
+#include "utils/utils.hpp"
