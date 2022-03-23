@@ -3,7 +3,10 @@ namespace argentum {
    
     class c_ctx {
     private:
+        
         void init_imgui() const;
+        void init_hooks() const;
+        
     public:
         void run();
     };

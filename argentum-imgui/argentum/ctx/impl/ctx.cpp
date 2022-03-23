@@ -11,12 +11,43 @@ int __stdcall DllMain(_In_ HINSTANCE instance, _In_ DWORD reason, _In_ LPVOID re
 	return 1;
 }
 
+#ifdef _DEBUG
+#define THROW( exception ) OutputDebugString(exception);
+#else
+#define THROW( exception ) return
+#endif
+
+#define HOOK_VFUNC( vft, index, hook, original ) \
+    if ( MH_CreateHook(  reinterpret_cast<LPVOID>(vft[index]), \
+        reinterpret_cast< LPVOID >( &hook ), reinterpret_cast< LPVOID* >( &original ) ) != MH_OK ) \
+        THROW( "Can't hook " #hook "." ) \
+
 namespace argentum {
 	void c_ctx::run() {
-		OutputDebugString("Wohoo this works!");
+		if (!g_engine->init_directx()) {
+			THROW("Can't initialize DirectX device");
+			return;
+		}
+		
+		if (MH_Initialize() != MH_OK) {
+			THROW("Can't initialize MinHook");
+		}
+
+		init_hooks();
+
+		if (MH_EnableHook(MH_ALL_HOOKS) != MH_OK)
+			THROW("There was a problem enabling some hook.");
+	}
+
+	void c_ctx::init_hooks() const {
+		HOOK_VFUNC(g_engine->get_vft(), PRESENT_INDEX, hooks::dx9_present, hooks::o_dx9_present);
 	}
 
 	void c_ctx::init_imgui() const {
 		// todo
 	}
+
 }
+
+#undef HOOK_VFUNC
+#undef THROW
