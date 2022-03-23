@@ -179,6 +179,7 @@
     <ClInclude Include="argentum\ctx\ctx.hpp" />
     <ClInclude Include="argentum\engine\engine.hpp" />
     <ClInclude Include="argentum\hooks\hooks.hpp" />
+    <ClInclude Include="argentum\menu\menu.hpp" />
     <ClInclude Include="thirdparty\include\imgui\imconfig.h" />
     <ClInclude Include="thirdparty\include\imgui\imgui.h" />
     <ClInclude Include="thirdparty\include\imgui\imgui_impl_dx9.h" />
@@ -193,6 +194,7 @@
     <ClCompile Include="argentum\ctx\impl\ctx.cpp" />
     <ClCompile Include="argentum\engine\impl\engine.cpp" />
     <ClCompile Include="argentum\hooks\impl\hooks.cpp" />
+    <ClCompile Include="argentum\menu\impl\menu.cpp" />
     <ClCompile Include="thirdparty\include\imgui\imgui.cpp" />
     <ClCompile Include="thirdparty\include\imgui\imgui_demo.cpp" />
     <ClCompile Include="thirdparty\include\imgui\imgui_draw.cpp" />

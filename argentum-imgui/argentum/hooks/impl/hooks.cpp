@@ -32,6 +32,7 @@ namespace argentum::hooks {
 			if (!initialised) {
 				ImGui::CreateContext();
 				ImGuiIO& io = ImGui::GetIO(); (void)io;
+				ImGui::GetStyle().WindowMinSize = { 450, 350 };
 				ImGui::GetIO().WantCaptureMouse || ImGui::GetIO().WantTextInput || ImGui::GetIO().WantCaptureKeyboard;
 				io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
 				ImGui_ImplWin32_Init(g_engine->get_window());
@@ -55,7 +56,7 @@ namespace argentum::hooks {
 
 			io.MouseDown[0] = (GetKeyState(VK_LBUTTON) & 0x8000) != 0;
 			io.MouseDown[1] = (GetKeyState(VK_RBUTTON) & 0x8000) != 0;
-			ImGui::ShowDemoWindow();
+			g_menu->render();
 			ImGui::EndFrame();
 			ImGui::Render();
 			ImGui_ImplDX9_RenderDrawData(ImGui::GetDrawData());

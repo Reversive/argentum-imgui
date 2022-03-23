@@ -54,6 +54,9 @@
     <ClInclude Include="argentum\engine\engine.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="argentum\menu\menu.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="thirdparty\include\imgui\imgui.cpp">
@@ -84,6 +87,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="argentum\engine\impl\engine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="argentum\menu\impl\menu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
