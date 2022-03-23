@@ -10,6 +10,8 @@
 #if defined( _WIN32 ) || defined( _WIN64 )
 #define NOMINMAX
 #define WIN32_LEAN_AND_MEAN
+#define D3D9_VMT_SIZE 119
+#define PRESENT_INDEX 17u
 #include <windows.h>
 #endif
 
@@ -17,3 +19,4 @@
 #include <thread>
 #include "ctx/ctx.hpp"
 #include "hooks/hooks.hpp"
+#include "engine/engine.hpp"
