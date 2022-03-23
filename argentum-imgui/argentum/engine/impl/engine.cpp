@@ -4,8 +4,22 @@ namespace argentum {
 	uint32_t* c_engine::get_vft() const {
 		return g_engine->m_vft;
 	}
+	HWND c_engine::get_window() const
+	{
+		return g_engine->m_hwnd;
+	}
+
+	void c_engine::set_window(HWND hwnd) const
+	{
+		g_engine->m_hwnd = hwnd;
+	}
+
 	bool c_engine::init_directx() const {
-		if (!init_window()) {
+		if (!init_render_window()) {
+			return false;
+		}
+
+		if (!init_directx_window()) {
 			return false;
 		}
 
@@ -29,7 +43,7 @@ namespace argentum {
 		params.MultiSampleType = D3DMULTISAMPLE_NONE;
 		params.MultiSampleQuality = NULL;
 		params.SwapEffect = D3DSWAPEFFECT_DISCARD;
-		params.hDeviceWindow = g_engine->m_hwnd;
+		params.hDeviceWindow = g_engine->m_dummy_hwnd;
 		params.Windowed = true;
 		params.EnableAutoDepthStencil = 0;
 		params.AutoDepthStencilFormat = D3DFMT_UNKNOWN;
@@ -39,7 +53,7 @@ namespace argentum {
 
 		LPDIRECT3DDEVICE9 device;
 		if (direct3d9->CreateDevice(D3DADAPTER_DEFAULT,
-			D3DDEVTYPE_HAL, g_engine->m_hwnd, D3DCREATE_SOFTWARE_VERTEXPROCESSING | D3DCREATE_DISABLE_DRIVER_MANAGEMENT,
+			D3DDEVTYPE_HAL, g_engine->m_dummy_hwnd, D3DCREATE_SOFTWARE_VERTEXPROCESSING | D3DCREATE_DISABLE_DRIVER_MANAGEMENT,
 			&params, &device) < 0
 			) {
 			direct3d9->Release();
@@ -60,7 +74,21 @@ namespace argentum {
 		return true;
 	}
 
-	bool c_engine::init_window() const {
+	bool c_engine::init_render_window() const
+	{
+		bool found = false;
+		while (found == false) {
+			DWORD ForegroundWindowProcessID;
+			GetWindowThreadProcessId(GetForegroundWindow(), &ForegroundWindowProcessID);
+			if (GetCurrentProcessId() == ForegroundWindowProcessID) {
+				g_engine->m_hwnd = GetForegroundWindow();
+				found = true;
+			}
+		}
+		return found;
+	}
+
+	bool c_engine::init_directx_window() const {
 		g_engine->m_wclass.cbSize = sizeof(WNDCLASSEX);
 		g_engine->m_wclass.style = CS_HREDRAW | CS_VREDRAW;
 		g_engine->m_wclass.lpfnWndProc = DefWindowProc;
@@ -74,15 +102,15 @@ namespace argentum {
 		g_engine->m_wclass.lpszClassName = "MJ";
 		g_engine->m_wclass.hIconSm = NULL;
 		RegisterClassEx(&g_engine->m_wclass);
-		g_engine->m_hwnd = CreateWindow(g_engine->m_wclass.lpszClassName, "DirectX Window", WS_OVERLAPPEDWINDOW, 0, 0, 100, 100, NULL, NULL, g_engine->m_wclass.hInstance, NULL);
-		if (g_engine->m_hwnd == NULL) {
+		g_engine->m_dummy_hwnd = CreateWindow(g_engine->m_wclass.lpszClassName, "DirectX Window", WS_OVERLAPPEDWINDOW, 0, 0, 100, 100, NULL, NULL, g_engine->m_wclass.hInstance, NULL);
+		if (g_engine->m_dummy_hwnd == NULL) {
 			return false;
 		}
 		return true;
 	}
 
 	void c_engine::delete_window() const {
-		DestroyWindow(g_engine->m_hwnd);
+		DestroyWindow(g_engine->m_dummy_hwnd);
 		UnregisterClass(g_engine->m_wclass.lpszClassName, g_engine->m_wclass.hInstance);
 	}
 }

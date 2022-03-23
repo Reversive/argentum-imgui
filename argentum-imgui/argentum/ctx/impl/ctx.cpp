@@ -47,12 +47,8 @@ namespace argentum {
 	void c_ctx::init_hooks() const {
 		HOOK_VFUNC(g_engine->get_vft(), PRESENT_INDEX, hooks::dx9_present, hooks::o_dx9_present);
 		HOOK_VFUNC(g_engine->get_vft(), RESET_INDEX, hooks::dx9_reset, hooks::o_dx9_reset);
-		// todo: pattern scan this function
+		//todo: pattern scan this function
 		HOOK(0x597510, hooks::key_up, hooks::o_key_up);
-	}
-
-	void c_ctx::init_imgui() const {
-		// todo
 	}
 
 }
