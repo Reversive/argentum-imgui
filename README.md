@@ -19,7 +19,7 @@ When you inject a dll to a process, the interaction with I/O is either very poor
 
 
 https://user-images.githubusercontent.com/14043761/159783642-b2689318-f98f-4ae9-b76d-5653b68abda7.mp4
-#### Note: This isn't included in the repository and will never be, do not send me a message asking how to do this, this is only for educational purposes.
+#### DISCLAIMER: Sole purpose of this showcase is giving people insight on how you can interact with the UI, this showcase/feature is not included in the repository and will never be, don't message me asking on how to achieve this.
 
 
 
@@ -46,6 +46,6 @@ Give a ⭐️ if this project helped you!
 
 Copyright © 2022 [Matias Pavan](https://github.com/Reversive).<br />
 This project is [MIT](https://opensource.org/licenses/MIT) licensed.
-
-NOTE: THIS IS FOR EDUCATIONAL PURPOSES ONLY.
+***
+DISCLAIMER: Sole purpose of this repository is giving people insight into how to integrate ImGui to any dx8 game, please, don't do anything that negatively impacts someone.
 ***
