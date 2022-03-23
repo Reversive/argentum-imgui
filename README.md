@@ -10,7 +10,7 @@
 This is an integration of [Dear ImGui](https://github.com/ocornut/imgui) (a bloat-free graphical user interface library for C++) into Argentum Online. For this, it's necessary to hook directx EndScene/BeginScene/Present in order to get the d3d device and pass it to ImGui which provides a wide variety of drawing functions/widgets.  
 ## Requirements
 - [DirectX Software Development Kit](https://www.microsoft.com/en-us/download/details.aspx?id=6812)
-- [dxwrapper](https://github.com/elishacloud/dxwrapper) to wrap dx8 calls into dx9 (put the d3d8.dll in the game executable directory and enable d3d8to9 setting on dxwrapper.ini)
+- [dxwrapper](https://github.com/elishacloud/dxwrapper) to wrap dx8 calls into dx9 (put the d3d8.dll, dxwrapper.dll and dxwrapper.ini in the game executable directory and enable d3d8to9 setting on dxwrapper.ini)
 ## Showcase
 
 
