@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -74,16 +74,16 @@
     <LinkIncremental>true</LinkIncremental>
     <OutDir>$(SolutionDir)build\debug\</OutDir>
     <TargetName>$(ProjectName)-x86</TargetName>
-    <IncludePath>$(DXSDK_DIR)\Include;$(DXSDK_DIR)\Lib;$(IncludePath);$(DXSDK_DIR)\Lib</IncludePath>
-    <LibraryPath>$(DXSDK_DIR)\Lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir)thirdparty\include;$(DXSDK_DIR)Include;$(DXSDK_DIR)\Lib;$(IncludePath);$(DXSDK_DIR)\Lib</IncludePath>
+    <LibraryPath>$(ProjectDir)thirdparty\lib;$(DXSDK_DIR)Lib\x86;$(LibraryPath)</LibraryPath>
     <IntDir>intermediate\debug\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(SolutionDir)build\release\</OutDir>
     <TargetName>$(ProjectName)-x86</TargetName>
-    <IncludePath>$(DXSDK_DIR)\Include;$(VC_IncludePath);$(WindowsSDK_IncludePath);;$(DXSDK_DIR)\Lib</IncludePath>
-    <LibraryPath>$(DXSDK_DIR)\Lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir)thirdparty\include;$(DXSDK_DIR)Include;$(VC_IncludePath);$(WindowsSDK_IncludePath);;$(DXSDK_DIR)\Lib</IncludePath>
+    <LibraryPath>$(ProjectDir)thirdparty\lib;$(DXSDK_DIR)Lib\x86;$(LibraryPath)</LibraryPath>
     <IntDir>intermediate\release\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -102,7 +102,7 @@
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile />
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
     <Link>
@@ -123,7 +123,7 @@
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile />
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
     <Link>
@@ -132,6 +132,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
+      <AdditionalDependencies>minhook_x86_v143_mdd.lib;d3d9.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -173,10 +174,30 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="framework.h" />
+    <ClInclude Include="argentum\argentum.hpp" />
+    <ClInclude Include="thirdparty\include\imgui\imconfig.h" />
+    <ClInclude Include="thirdparty\include\imgui\imgui.h" />
+    <ClInclude Include="thirdparty\include\imgui\imgui_impl_dx9.h" />
+    <ClInclude Include="thirdparty\include\imgui\imgui_impl_win32.h" />
+    <ClInclude Include="thirdparty\include\imgui\imgui_internal.h" />
+    <ClInclude Include="thirdparty\include\imgui\imstb_rectpack.h" />
+    <ClInclude Include="thirdparty\include\imgui\imstb_textedit.h" />
+    <ClInclude Include="thirdparty\include\imgui\imstb_truetype.h" />
+    <ClInclude Include="thirdparty\include\minhook\minhook.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="argentum\ctx.cpp" />
+    <ClCompile Include="thirdparty\include\imgui\imgui.cpp" />
+    <ClCompile Include="thirdparty\include\imgui\imgui_demo.cpp" />
+    <ClCompile Include="thirdparty\include\imgui\imgui_draw.cpp" />
+    <ClCompile Include="thirdparty\include\imgui\imgui_impl_dx9.cpp" />
+    <ClCompile Include="thirdparty\include\imgui\imgui_impl_win32.cpp" />
+    <ClCompile Include="thirdparty\include\imgui\imgui_tables.cpp" />
+    <ClCompile Include="thirdparty\include\imgui\imgui_widgets.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="thirdparty\lib\minhook_x86_v143_md.lib" />
+    <Library Include="thirdparty\lib\minhook_x86_v143_mdd.lib" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
