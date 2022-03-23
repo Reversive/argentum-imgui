@@ -45,6 +45,9 @@
     <ClInclude Include="thirdparty\include\minhook\minhook.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="argentum\ctx\ctx.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="thirdparty\include\imgui\imgui.cpp">
@@ -68,7 +71,7 @@
     <ClCompile Include="thirdparty\include\imgui\imgui_widgets.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="argentum\ctx.cpp">
+    <ClCompile Include="argentum\ctx\impl\ctx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

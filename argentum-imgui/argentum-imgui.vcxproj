@@ -30,14 +30,14 @@
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
@@ -175,6 +175,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="argentum\argentum.hpp" />
+    <ClInclude Include="argentum\ctx\ctx.hpp" />
     <ClInclude Include="thirdparty\include\imgui\imconfig.h" />
     <ClInclude Include="thirdparty\include\imgui\imgui.h" />
     <ClInclude Include="thirdparty\include\imgui\imgui_impl_dx9.h" />
@@ -186,7 +187,7 @@
     <ClInclude Include="thirdparty\include\minhook\minhook.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="argentum\ctx.cpp" />
+    <ClCompile Include="argentum\ctx\impl\ctx.cpp" />
     <ClCompile Include="thirdparty\include\imgui\imgui.cpp" />
     <ClCompile Include="thirdparty\include\imgui\imgui_demo.cpp" />
     <ClCompile Include="thirdparty\include\imgui\imgui_draw.cpp" />
