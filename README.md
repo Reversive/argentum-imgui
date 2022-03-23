@@ -7,7 +7,9 @@
 
 > ImGui integration for the popular 2D MMORPG Argentum Online
 ## What is this?
-This is an integration of [Dear ImGui](https://github.com/ocornut/imgui) (a bloat-free graphical user interface library for C++) into Argentum Online. For this, it's necessary to hook directx EndScene/BeginScene/Present in order to get the d3d device and pass it to ImGui which provides a wide variety of drawing functions/widgets.  
+This is an integration of [Dear ImGui](https://github.com/ocornut/imgui) (a bloat-free graphical user interface library for C++) into Argentum Online. For this, it's necessary to hook DirectX EndScene/BeginScene/Present in order to hijack the d3d device, serve it to ImGui and gain access to an extensive graphical interface.
+## What is the usage?
+When you inject a dll to a process, the interaction with I/O is either very poor (e.g spawning a console) or very complex (e.g having to make a GUI on C# and connect it with the dll via pipes). What this enables you is to have an extensive graphical interface to make complex components for the user to interact directly from your dll.
 ## Requirements
 - [DirectX Software Development Kit](https://www.microsoft.com/en-us/download/details.aspx?id=6812)
 - [dxwrapper](https://github.com/elishacloud/dxwrapper) to wrap dx8 calls into dx9 (put the d3d8.dll, dxwrapper.dll and dxwrapper.ini in the game executable directory and enable d3d8to9 setting on dxwrapper.ini)
